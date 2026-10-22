@@ -1,0 +1,6 @@
+{
+  "name": "Libra Auto Socorro — Barão Geraldo, Campinas",
+  "description": "Landing page de assistência automotiva e guincho para a Libra Auto Socorro, com base em Barão Geraldo e atendimento na Região Metropolitana de Campinas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
