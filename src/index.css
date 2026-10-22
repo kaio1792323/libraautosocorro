@@ -3,10 +3,12 @@
 @theme {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --color-libra-navy: #14263B;
-  --color-libra-yellow: #F5C400;
+  --color-libra-navy: #061B3D;
+  --color-libra-yellow: #FFD400;
   --color-libra-light: #F5F7FA;
   --color-libra-border: #E2E8F0;
+  /* Spacing extra para ícones */
+  --spacing-4_5: 1.125rem;
 }
 
 html {
@@ -14,8 +16,16 @@ html {
   font-family: var(--font-sans);
 }
 
-/* Custom scrollbar and focus indicators */
 *:focus-visible {
-  outline: 2px solid #F5C400;
+  outline: 2px solid #FFD400;
   outline-offset: 2px;
+}
+
+/* Safe area para iPhone com notch/Dynamic Island */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pb-safe-bar {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.625rem);
 }

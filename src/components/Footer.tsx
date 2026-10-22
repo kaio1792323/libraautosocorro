@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, MessageSquare, MapPin } from 'lucide-react';
+import { MessageSquare, Phone } from 'lucide-react';
 
 interface FooterProps {
   companyName: string;
@@ -20,113 +20,114 @@ export const Footer: React.FC<FooterProps> = ({
   legalDisclaimer,
   onTrack,
 }) => {
-  const currentYear = new Date().getFullYear();
+  const waUrl = `${whatsappBaseUrl}?text=${encodeURIComponent(
+    'Olá! Preciso de auto socorro para meu veículo. Estou em [local]. Veículo: [modelo/tipo]. Podem verificar disponibilidade?'
+  )}`;
 
   return (
-    <footer className="bg-[#0B1522] text-slate-400 text-xs pt-14 pb-24 md:pb-14 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-          
-          {/* Coluna 1: Marca & Apresentação */}
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded bg-[#F5C400] text-[#14263B] font-black flex items-center justify-center text-sm">
-                L
-              </div>
-              <span className="font-extrabold text-base uppercase text-white tracking-tight">
+    <footer
+      className="bg-[#061B3D] border-t-2 border-[#FFD400]/30 pb-24 md:pb-0"
+      aria-label="Rodapé"
+    >
+      {/* Main grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        {/* Brand */}
+        <div className="lg:col-span-2">
+          <div className="flex items-center gap-3 mb-4">
+            <img
+              src="/images/logo_libra.png"
+              alt="Logotipo Libra Auto Socorro"
+              className="h-10 w-auto object-contain"
+              loading="lazy"
+              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+            />
+            <div>
+              <p className="text-white font-extrabold text-base uppercase tracking-tight leading-none">
                 {companyName}
-              </span>
-            </div>
-            <p className="text-slate-400 leading-relaxed mb-4 text-xs max-w-sm font-normal">
-              Assistência veicular, socorro de bateria, auxílio elétrico/mecânico e guincho plataforma para automóveis de passeio, utilitários leves e frotas na Região Metropolitana de Campinas.
-            </p>
-            <div className="flex items-start gap-2 text-slate-400">
-              <MapPin className="w-4 h-4 text-[#F5C400] shrink-0 mt-0.5" />
-              <span>Base: {baseAddress}</span>
+              </p>
+              <p className="text-[#FFD400] text-xs mt-0.5 font-semibold">
+                Mecânica · Elétrica · Borracharia Volante
+              </p>
             </div>
           </div>
-
-          {/* Coluna 2: Canais Oficiais */}
-          <div className="md:col-span-4">
-            <h4 className="text-white font-bold text-sm mb-3 uppercase tracking-wider">
-              Contatos Oficiais
-            </h4>
-            <ul className="space-y-2.5">
-              <li>
-                <a
-                  href={`${whatsappBaseUrl}?text=${encodeURIComponent('Olá! Gostaria de falar com a Libra Auto Socorro.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => onTrack('whatsapp', 'footer_link_wa')}
-                  className="flex items-center gap-2 text-slate-300 hover:text-[#F5C400] transition-colors"
-                >
-                  <MessageSquare className="w-4 h-4 text-[#F5C400]" />
-                  <span>WhatsApp: <strong className="font-mono">{phoneFormatted}</strong></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={phoneTelLink}
-                  onClick={() => onTrack('phone', 'footer_link_phone')}
-                  className="flex items-center gap-2 text-slate-300 hover:text-[#F5C400] transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-[#F5C400]" />
-                  <span>Telefone Direto: <strong className="font-mono">{phoneFormatted}</strong></span>
-                </a>
-              </li>
-              <li className="text-slate-400">
-                Atendimento mediante confirmação de escala e trânsito
-              </li>
-            </ul>
-          </div>
-
-          {/* Coluna 3: Navegação Rápida */}
-          <div className="md:col-span-3">
-            <h4 className="text-white font-bold text-sm mb-3 uppercase tracking-wider">
-              Navegação
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#atendimento" className="hover:text-white transition-colors">
-                  Categorias de Atendimento
-                </a>
-              </li>
-              <li>
-                <a href="#servicos" className="hover:text-white transition-colors">
-                  Catálogo de Serviços
-                </a>
-              </li>
-              <li>
-                <a href="#regiao" className="hover:text-white transition-colors">
-                  Região Atendida & Rodovias
-                </a>
-              </li>
-              <li>
-                <a href="#como-funciona" className="hover:text-white transition-colors">
-                  Como Solicitar Atendimento
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Divisor & Aviso Legal */}
-        <div className="pt-8 border-t border-slate-800/80">
-          <p className="text-[11px] text-slate-400 leading-relaxed mb-4">
-            {legalDisclaimer}
+          <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+            Assistência emergencial para veículos médios e pesados, com suporte também para automóveis e utilitários leves.
+            Diagnóstico e reparos no local da pane, sempre que tecnicamente possível.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 pt-2">
-            <div>
-              © {currentYear} {companyName}. Barão Geraldo, Campinas - SP. Todos os direitos reservados.
-            </div>
-            <div>
-              Desenvolvido com foco em conversão e transparência.
-            </div>
-          </div>
+          <p className="text-slate-500 text-xs mt-3">
+            Base: {baseAddress}
+          </p>
         </div>
 
+        {/* Contatos */}
+        <div>
+          <h3 className="text-white font-extrabold text-sm uppercase tracking-wider mb-4">
+            Contatos
+          </h3>
+          <ul className="space-y-3">
+            <li>
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => onTrack('whatsapp', 'footer_wa_link')}
+                className="inline-flex items-center gap-2 text-slate-300 hover:text-[#FFD400] text-sm transition-colors focus-visible:outline-none focus-visible:text-[#FFD400]"
+                aria-label="Chamar no WhatsApp"
+              >
+                <MessageSquare className="w-4 h-4 text-[#FFD400] shrink-0" aria-hidden="true" />
+                {phoneFormatted} (WhatsApp)
+              </a>
+            </li>
+            <li>
+              <a
+                href={phoneTelLink}
+                onClick={() => onTrack('phone', 'footer_tel_link')}
+                className="inline-flex items-center gap-2 text-slate-300 hover:text-[#FFD400] text-sm transition-colors focus-visible:outline-none focus-visible:text-[#FFD400]"
+                aria-label={`Ligar para ${phoneFormatted}`}
+              >
+                <Phone className="w-4 h-4 text-[#FFD400] shrink-0" aria-hidden="true" />
+                {phoneFormatted} (Telefone)
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Serviços */}
+        <div>
+          <h3 className="text-white font-extrabold text-sm uppercase tracking-wider mb-4">
+            Serviços
+          </h3>
+          <ul className="space-y-1.5 text-sm text-slate-400">
+            {[
+              'Bateria e Partida',
+              'Pane Elétrica',
+              'Motor de Arranque',
+              'Alternador',
+              'Sistema Diesel',
+              'Correias',
+              'Arrefecimento',
+              'Freios',
+              'Borracharia',
+              'Ignição e Travas',
+            ].map((s) => (
+              <li key={s} className="hover:text-slate-300 transition-colors">
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      {/* Legal bar */}
+      <div className="border-t border-white/10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p className="text-xs text-slate-500 leading-relaxed mb-2">
+          {legalDisclaimer}
+        </p>
+        <p className="text-xs text-slate-600">
+          © {new Date().getFullYear()} {companyName}. Todos os direitos reservados.
+        </p>
       </div>
     </footer>
   );

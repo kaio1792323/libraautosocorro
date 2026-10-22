@@ -1,110 +1,77 @@
 import React from 'react';
-import { ShieldCheck, FileText, Check, PhoneCall, Sparkles } from 'lucide-react';
-import { LIBRA_CONFIG } from '../data/config';
+import { Truck, MapPin, Car, Users } from 'lucide-react';
+import { TrustPillar } from '../data/config';
 
 interface TrustSectionProps {
-  pillars: typeof LIBRA_CONFIG.trustPillars;
+  pillars: TrustPillar[];
   phoneFormatted: string;
   baseAddress: string;
 }
 
-export const TrustSection: React.FC<TrustSectionProps> = ({
-  pillars,
-  phoneFormatted,
-  baseAddress,
-}) => {
+const iconMap: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  Truck, MapPin, Car, Users,
+};
+
+export const TrustSection: React.FC<TrustSectionProps> = ({ pillars, phoneFormatted, baseAddress }) => {
   return (
-    <section className="py-16 sm:py-20 bg-white border-t border-slate-200">
+    <section
+      id="diferenciais"
+      className="bg-[#061B3D] py-12 sm:py-16 md:py-24"
+      aria-labelledby="diferenciais-title"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <div className="inline-block text-xs font-bold uppercase tracking-wider text-[#14263B] mb-2">
-            Transparência e Diferenciais
+
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+          <div className="inline-block px-3 py-1 rounded-full bg-[#FFD400]/15 text-[#FFD400] text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4">
+            Nossos Diferenciais
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#14263B] tracking-tight mb-4">
-            Compromisso com o que é verdadeiro
+          <h2
+            id="diferenciais-title"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white leading-tight max-w-3xl mx-auto"
+          >
+            SEU VEÍCULO É IMPORTANTE PARA SUA OPERAÇÃO.{' '}
+            <span className="text-[#FFD400]">NOSSO COMPROMISSO É AJUDAR VOCÊ A SEGUIR EM FRENTE.</span>
           </h2>
-          <p className="text-base text-slate-600 leading-relaxed font-normal">
-            Não fazemos promessas irreais de chegada em minutos sem verificar o trânsito da região. Trabalhamos com seriedade, preço justo informado previamente e cuidado com o seu automóvel.
-          </p>
         </div>
 
-        {/* 4 Trust Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {pillars.map((pillar, idx) => (
-            <div
-              key={idx}
-              className="bg-[#F8FAFC] border border-slate-200 rounded-xl p-6 flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-9 h-9 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center mb-4 text-[#14263B] font-bold text-sm">
-                  {idx + 1}
+        {/* Pillars — 1 col mobile, 2 col sm/md, 4 col lg */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+          {pillars.map((pillar, i) => {
+            const IconComp = iconMap[pillar.icon] ?? Truck;
+            return (
+              <article
+                key={i}
+                className="bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 hover:bg-white/10 hover:border-[#FFD400]/30 transition-all duration-200"
+                aria-label={pillar.title}
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#FFD400] flex items-center justify-center mb-4 shadow-md shrink-0">
+                  <IconComp className="w-5 h-5 sm:w-6 sm:h-6 text-[#061B3D]" aria-hidden="true" />
                 </div>
-                <h3 className="text-base font-bold text-[#14263B] mb-2">
+                <h3 className="text-white font-extrabold text-sm sm:text-base mb-2 leading-snug">
                   {pillar.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                   {pillar.description}
                 </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-slate-200 flex items-center gap-1.5 text-xs font-semibold text-slate-700">
-                <Check className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                <span>Critério verificado</span>
-              </div>
-            </div>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
-        {/* Dados Comerciais e Espaço Reservado para Fotos Reais */}
-        <div className="bg-[#14263B] text-white rounded-xl p-8 sm:p-10 border border-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#F5C400] uppercase tracking-wider mb-2">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Dados Comerciais & Atendimento</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-white">
-                Atendimento direto com quem opera em Campinas
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6 font-normal">
-                Você fala diretamente com a equipe operacional. Fornecemos orientação prévia de segurança para condutores parados na pista ou acostamento enquanto a viatura se desloca.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="bg-[#0F1E2E] p-3.5 rounded-lg border border-slate-700">
-                  <span className="block text-slate-400 font-medium">Canal Telefônico / WhatsApp:</span>
-                  <span className="text-white font-mono font-bold text-sm mt-0.5 block">{phoneFormatted}</span>
-                </div>
-                <div className="bg-[#0F1E2E] p-3.5 rounded-lg border border-slate-700">
-                  <span className="block text-slate-400 font-medium">Ponto de Partida:</span>
-                  <span className="text-white font-semibold mt-0.5 block">{baseAddress}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 bg-[#0F1E2E] p-6 rounded-lg border border-slate-700/80">
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
-                <FileText className="w-4 h-4 text-[#F5C400]" />
-                <span>Política de Confirmação</span>
-              </div>
-              <ul className="space-y-2 text-xs text-slate-300 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F5C400] mt-1.5 shrink-0" />
-                  <span>Valores combinados previamente com base na distância de ida e retorno.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F5C400] mt-1.5 shrink-0" />
-                  <span>Sem cláusulas ocultas ou custos abusivos de permanência não informados.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#F5C400] mt-1.5 shrink-0" />
-                  <span>Espaço dedicado para inserção das fotos reais da equipe e veículos do proprietário.</span>
-                </li>
-              </ul>
-            </div>
-
+        {/* Info strip — 1 col mobile, 3 col sm+ */}
+        <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div className="bg-white/5 border border-white/10 rounded-xl py-4 px-3 text-center">
+            <p className="text-[#FFD400] font-extrabold text-base sm:text-lg break-all">{phoneFormatted}</p>
+            <p className="text-slate-400 text-xs mt-1">WhatsApp / Telefone</p>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl py-4 px-3 text-center">
+            <p className="text-[#FFD400] font-extrabold text-base sm:text-lg">Leves e Pesados</p>
+            <p className="text-slate-400 text-xs mt-1">Atendimento amplo</p>
+          </div>
+          <div className="bg-white/5 border border-white/10 rounded-xl py-4 px-3 text-center">
+            <p className="text-[#FFD400] font-extrabold text-base sm:text-lg">{baseAddress}</p>
+            <p className="text-slate-400 text-xs mt-1">Base de atendimento</p>
           </div>
         </div>
 

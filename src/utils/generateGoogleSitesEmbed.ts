@@ -791,7 +791,7 @@ export function generateGoogleSitesEmbed(config = LIBRA_CONFIG): string {
               <h3 class="libra-segment-title">${seg.title}</h3>
               <p class="libra-segment-desc">${seg.description}</p>
               <ul class="libra-segment-bullets">
-                ${seg.bulletPoints.map(bp => `
+                ${(seg.bulletPoints ?? []).map((bp: string) => `
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5C400" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                     <span>${bp}</span>

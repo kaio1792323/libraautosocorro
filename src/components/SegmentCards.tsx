@@ -1,112 +1,102 @@
 import React from 'react';
-import { Wrench, Truck, Building2, CheckCircle2, MessageSquare } from 'lucide-react';
-import { SegmentationCard } from '../data/config';
+import { MessageSquare, Truck, Bus, Waves, Package, Car } from 'lucide-react';
+import { SegmentCard } from '../data/config';
 
 interface SegmentCardsProps {
-  segmentations: SegmentationCard[];
+  segments: SegmentCard[];
   whatsappBaseUrl: string;
   onTrack: (type: 'whatsapp' | 'phone', source: string) => void;
 }
 
+const segmentIcons: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  caminhoes: Truck,
+  onibus: Bus,
+  vans: Waves,
+  utilitarios: Package,
+  automoveis: Car,
+};
+
 export const SegmentCards: React.FC<SegmentCardsProps> = ({
-  segmentations,
+  segments,
   whatsappBaseUrl,
   onTrack,
 }) => {
-  const getIcon = (id: string) => {
-    switch (id) {
-      case 'socorro-veicular':
-        return <Wrench className="w-6 h-6 text-[#14263B]" />;
-      case 'guincho-transporte':
-        return <Truck className="w-6 h-6 text-[#14263B]" />;
-      case 'empresas-frotas':
-        return <Building2 className="w-6 h-6 text-[#14263B]" />;
-      default:
-        return <Wrench className="w-6 h-6 text-[#14263B]" />;
-    }
-  };
-
   return (
-    <section id="atendimento" className="py-16 sm:py-20 bg-[#F5F7FA]">
+    <section
+      id="atendimento"
+      className="bg-white py-12 sm:py-16 md:py-24 border-t border-slate-100"
+      aria-labelledby="segmentos-title"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <div className="inline-block text-xs font-bold uppercase tracking-wider text-[#14263B] mb-2">
-            Segmentação de Atendimento
+
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-14">
+          <div className="inline-block px-3 py-1 rounded-full bg-[#FFD400]/15 text-[#061B3D] text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4">
+            Veículos Atendidos
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#14263B] tracking-tight mb-4">
-            Qual é a sua necessidade no momento?
+          <h2
+            id="segmentos-title"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#061B3D] leading-tight"
+          >
+            ASSISTÊNCIA PARA DIFERENTES PERFIS DE VEÍCULOS.
           </h2>
-          <p className="text-base text-slate-600 leading-relaxed font-normal">
-            Selecione a categoria correspondente para abrir o WhatsApp com mensagem direcionada, facilitando a identificação do veículo e agilizando seu contato.
-          </p>
         </div>
 
-        {/* 3 Cartões Principais */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {segmentations.map((card) => {
-            const cardWaUrl = `${whatsappBaseUrl}?text=${encodeURIComponent(card.whatsappMessage)}`;
+        {/* Cards grid
+            mobile:  1 coluna
+            sm/md:   2 colunas (com último item centralizado via justify-items)
+            lg:      3 colunas (os 2 últimos ficam centralizados)
+            xl:      5 colunas (1 linha limpa)
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 justify-items-stretch">
+          {segments.map((seg) => {
+            const IconComp = segmentIcons[seg.id] ?? Truck;
+            const waUrl = `${whatsappBaseUrl}?text=${encodeURIComponent(seg.whatsappMessage)}`;
 
             return (
-              <div
-                key={card.id}
-                className="bg-white rounded-xl border border-slate-200/90 p-7 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200"
+              <article
+                key={seg.id}
+                className="relative rounded-2xl p-5 flex flex-col gap-3 transition-all duration-200 border bg-[#061B3D] text-white border-[#FFD400]/30 shadow-md ring-1 ring-[#FFD400]/20 hover:ring-[#FFD400]/50 hover:shadow-xl"
+                aria-label={`Atendimento para ${seg.title}`}
               >
-                <div>
-                  {/* Top Header do Card com Ícone */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-13 h-13 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center p-3">
-                      {getIcon(card.id)}
-                    </div>
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      {card.targetAudience}
-                    </span>
-                  </div>
+                {/* Badge prioridade */}
+                {seg.highlight && (
+                  <span className="absolute top-3 right-3 px-2 py-0.5 bg-[#FFD400] text-[#061B3D] text-[10px] font-extrabold rounded-full uppercase tracking-wide leading-tight">
+                    Prioridade
+                  </span>
+                )}
 
-                  {/* Título do Card */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#14263B] mb-3">
-                    {card.title}
+                {/* Ícone */}
+                <div className="w-11 h-11 rounded-xl bg-[#FFD400] flex items-center justify-center shrink-0">
+                  <IconComp className="w-5 h-5 text-[#061B3D]" aria-hidden="true" />
+                </div>
+
+                {/* Conteúdo */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-extrabold text-base leading-snug mb-1.5 text-white pr-12">
+                    {seg.title}
                   </h3>
-
-                  {/* Descrição */}
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
-                    {card.description}
-                  </p>
-
-                  {/* Lista de pontos */}
-                  <ul className="space-y-2.5 mb-8">
-                    {card.bulletPoints.map((point, index) => (
-                      <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-[#F5C400] shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Botão de Ação com Mensagem Pré-preenchida */}
-                <div>
-                  <a
-                    href={cardWaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => onTrack('whatsapp', `segment_${card.id}`)}
-                    className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-lg bg-[#14263B] text-white font-bold text-sm hover:bg-[#1f3854] transition-colors duration-150 shadow-sm active:scale-[0.99] text-center"
-                  >
-                    <MessageSquare className="w-4 h-4 text-[#F5C400]" />
-                    <span>{card.ctaText}</span>
-                  </a>
-                  
-                  <p className="text-[11px] text-center text-slate-500 mt-2 font-medium">
-                    Abre mensagem direta no WhatsApp
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    {seg.description}
                   </p>
                 </div>
-              </div>
+
+                {/* CTA */}
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => onTrack('whatsapp', `segment_${seg.id}`)}
+                  className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 font-bold text-xs rounded-xl active:scale-95 transition-all min-h-[40px] bg-[#25D366] text-white hover:bg-[#1ebe5d]"
+                  aria-label={`Solicitar assistência para ${seg.title}`}
+                >
+                  <MessageSquare className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  Solicitar Atendimento
+                </a>
+              </article>
             );
           })}
         </div>
-
       </div>
     </section>
   );
