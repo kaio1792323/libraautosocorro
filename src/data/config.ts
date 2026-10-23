@@ -54,7 +54,7 @@ export const LIBRA_CONFIG = {
     "Auto socorro mecânico e elétrico para caminhões, ônibus, vans e automóveis. Diagnóstico, reparos emergenciais e borracharia no local da pane.",
 
   // ── Hero ──────────────────────────────────────────────────────────────────
-  heroTitle: "AUTO SOCORRO MECÂNICO E ELÉTRICO NO LOCAL DA PANE.",
+  heroTitle: "AUTO SOCORRO MECÂNICO E ELÉTRICO NO LOCAL",
   heroSubtitle:
     "Especialistas no atendimento de veículos médios e pesados, com assistência também para veículos leves.",
   heroDescription:
@@ -97,7 +97,7 @@ export const LIBRA_CONFIG = {
     {
       id: "motor-arranque",
       icon: "RotateCcw",
-      title: "Motor de Arranque e Falhas na Partida",
+      title: "Falhas na Partida",
       subtitle: "O motor não dá partida? Vamos identificar a causa.",
       description:
         "Verificação do motor de arranque, automático, terminais, cabos e conexões elétricas. Quando possível, são realizadas intervenções emergenciais para restabelecer o funcionamento do sistema de partida.",
@@ -108,7 +108,7 @@ export const LIBRA_CONFIG = {
     {
       id: "alternador-carregamento",
       icon: "Gauge",
-      title: "Alternador e Sistema de Carregamento",
+      title: "Sistema de Carregamento",
       subtitle: "Problemas no alternador? Conte com apoio técnico.",
       description:
         "Testes de tensão e carregamento, avaliação do alternador, regulador de voltagem, escovas e conexões. Quando tecnicamente viável, poderão ser realizados ajustes ou substituições de componentes no próprio local.",
@@ -119,7 +119,7 @@ export const LIBRA_CONFIG = {
     {
       id: "combustivel-diesel",
       icon: "Fuel",
-      title: "Pane de Combustível e Sistema Diesel",
+      title: "Pane de Combustível",
       subtitle: "Falhas na alimentação de combustível?",
       description:
         "Diagnóstico de panes relacionadas à falta ou alimentação inadequada de combustível, filtros obstruídos e entrada de ar no sistema diesel. Conforme avaliação, poderão ser realizados procedimentos de sangria, substituição de filtros e apoio emergencial em situações de pane seca.",
@@ -131,7 +131,7 @@ export const LIBRA_CONFIG = {
     {
       id: "correia-auxiliar",
       icon: "Settings",
-      title: "Correia Auxiliar e Correia do Alternador",
+      title: "Correia Auxiliar e  Alternador",
       subtitle: "Uma correia danificada pode parar seu veículo.",
       description:
         "Diagnóstico de problemas nas correias auxiliares, tensionadores e componentes relacionados. Quando houver peça compatível e condições técnicas adequadas, a substituição poderá ser realizada no local da pane.",
@@ -153,7 +153,7 @@ export const LIBRA_CONFIG = {
     {
       id: "freios-roda",
       icon: "CircleDot",
-      title: "Freios e Componentes de Roda",
+      title: "Freios e Itens de Roda",
       subtitle: "Problemas no sistema de freios exigem atenção.",
       description:
         "Avaliação emergencial de falhas no sistema de freios, componentes de roda, regulagens e condições de funcionamento. Intervenções poderão ser realizadas quando houver condições técnicas e de segurança. Se a falha comprometer a segurança, o veículo não deve circular até o reparo.",
@@ -164,7 +164,7 @@ export const LIBRA_CONFIG = {
     {
       id: "borracharia-volante",
       icon: "Circle",
-      title: "Borracharia Volante e Troca de Pneus",
+      title: "Serviços de Borracharia",
       subtitle: "Pneu furado? Atendimento onde você estiver.",
       description:
         "Troca de rodas e pneus, avaliação de danos e serviços de borracharia emergencial compatíveis com os equipamentos disponíveis. Atendimento para veículos leves, médios e pesados, inclusive aplicações comerciais, conforme viabilidade técnica.",

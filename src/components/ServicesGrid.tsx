@@ -6,16 +6,16 @@ import {
 import { ServiceItem } from '../data/config';
 
 // Card 01 — imagem original
-import img01 from '../assets/images/service_mecanico_socorro_1792676428043.webp';
-import img02 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_37_25.webp';
-import img03 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_37_50.webp';
-import img04 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_37_55.webp';
-import img05 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_00.webp';
-import img06 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_05.webp';
-import img07 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_11.webp';
-import img08 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_16.webp';
-import img09 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_22.webp';
-import img10 from '../assets/images/Imagem do Codex 22 de out. de 2026, 16_38_49.webp';
+import img01 from '../assets/images/10.webp';
+import img02 from '../assets/images/2.webp';
+import img03 from '../assets/images/3.webp';
+import img04 from '../assets/images/5.webp';
+import img05 from '../assets/images/4.webp';
+import img06 from '../assets/images/5.webp';
+import img07 from '../assets/images/1.webp';
+import img08 from '../assets/images/6.webp';
+import img09 from '../assets/images/7.webp';
+import img10 from '../assets/images/8.webp';
 
 
 // Banners do topo da seção
@@ -58,7 +58,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
             id="servicos-title"
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#061B3D] leading-tight mb-3 sm:mb-4"
           >
-            10 SOLUÇÕES EMERGENCIAIS PARA AJUDAR SEU VEÍCULO A VOLTAR À OPERAÇÃO.
+            SOLUÇÕES EMERGENCIAIS PARA O SEU VEÍCULO
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Uma pane nem sempre significa que o veículo precisa ser removido. A Libra oferece
